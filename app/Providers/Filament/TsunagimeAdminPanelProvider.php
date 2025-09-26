@@ -25,8 +25,8 @@ class TsunagimeAdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
-            ->id('tsunagime-admin')
-            ->path('tsunagime-admin')
+            ->id('admin')
+            ->path('admin')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
