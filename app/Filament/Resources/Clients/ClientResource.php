@@ -22,6 +22,8 @@ class ClientResource extends Resource
 
     protected static string|null|\UnitEnum $navigationGroup = 'Users';
 
+    protected static ?int $navigationSort = 1;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     protected static string|null|BackedEnum $activeNavigationIcon = Heroicon::Users;
