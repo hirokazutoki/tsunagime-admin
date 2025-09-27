@@ -35,6 +35,7 @@ class AdministratorsTable
             ->filters([
                 //
             ])
+            ->defaultSort('id', direction: 'desc')
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
