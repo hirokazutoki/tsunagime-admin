@@ -20,6 +20,9 @@ class AdministratorResource extends Resource
 {
     protected static ?string $model = Administrator::class;
 
+
+    protected static string|null|\UnitEnum $navigationGroup = 'Users';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
     public static function form(Schema $schema): Schema
