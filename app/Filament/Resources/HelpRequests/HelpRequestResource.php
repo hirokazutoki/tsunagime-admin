@@ -22,6 +22,8 @@ class HelpRequestResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedChatBubbleBottomCenterText;
 
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::ChatBubbleBottomCenterText;
+
     public static function form(Schema $schema): Schema
     {
         return HelpRequestForm::configure($schema);

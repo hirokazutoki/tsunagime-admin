@@ -24,6 +24,8 @@ class VolunteerResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
+    protected static string|null|BackedEnum $activeNavigationIcon = Heroicon::Users;
+
     public static function form(Schema $schema): Schema
     {
         return VolunteerForm::configure($schema);

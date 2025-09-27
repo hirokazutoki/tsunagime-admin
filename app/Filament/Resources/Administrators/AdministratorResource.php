@@ -25,6 +25,8 @@ class AdministratorResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
+    protected static string|BackedEnum|null $activeNavigationIcon = Heroicon::Users;
+
     public static function form(Schema $schema): Schema
     {
         return AdministratorForm::configure($schema);
