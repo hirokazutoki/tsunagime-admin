@@ -15,11 +15,18 @@ class HelpRequestsTable
     {
         return $table
             ->columns([
+                TextColumn::make('process_status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'danger',
+                        'processing' => 'warning',
+                        'canceled' => 'gray',
+                        'completed' => 'success',
+                    })
+                    ->label('Process'),
                 TextColumn::make('client.name')
                     ->searchable(),
                 TextColumn::make('description')
-                    ->searchable(),
-                TextColumn::make('address')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
