@@ -7,7 +7,6 @@ use App\Models\HelpRequest;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Schemas\Components\Tabs\Tab;
-use Filament\Support\Icons\Heroicon;
 use Illuminate\Support\Collection;
 
 class ListHelpRequests extends ListRecords
@@ -21,6 +20,10 @@ class ListHelpRequests extends ListRecords
         $this->helpRequestsByProcessStatus = HelpRequest::select('process_status', \DB::raw('count(*) as count'))
             ->groupBy('process_status')
             ->pluck('count', 'process_status');
+
+        $this->helpRequestsByProcessStatus['today'] = HelpRequest::whereHas('clientAvailabilityDates', function ($query) {
+            $query->whereProcessStatus('pending')->today();
+        })->count();
     }
 
     protected function getHeaderActions(): array
@@ -39,12 +42,14 @@ class ListHelpRequests extends ListRecords
                 ->modifyQueryUsing(function ($query) {
                     return $query->whereProcessStatus('pending');
                 }),
-            'today' => Tab::make(),
-                // ->badge(0) // TODO:
-                // ->badgeColor('gray')
-                // ->modifyQueryUsing(function ($query) {
-                //     return $query->whereProcessStatus('pending')->clientAvailabilityDateIsToday(); // TODO:
-                // }),
+            'today' => Tab::make()
+                 ->badge($this->helpRequestsByProcessStatus['today'] ?? 0) // TODO:
+                 ->badgeColor('gray')
+                 ->modifyQueryUsing(function ($query) {
+                     return $query->whereHas('clientAvailabilityDates', function ($query) {
+                         $query->whereProcessStatus('pending')->today();
+                     });
+                 }),
             'processing' => Tab::make()
                 ->badge($this->helpRequestsByProcessStatus['processing'] ?? 0)
                 ->badgeColor('gray')
@@ -58,7 +63,7 @@ class ListHelpRequests extends ListRecords
                     return $query->whereProcessStatus('canceled');
                 }),
             'all' => Tab::make()
-                ->badge($this->helpRequestsByProcessStatus->sum())
+                ->badge($this->helpRequestsByProcessStatus->sum() - $this->helpRequestsByProcessStatus['today']) // TODO:
                 ->badgeColor('gray'),
         ];
     }
