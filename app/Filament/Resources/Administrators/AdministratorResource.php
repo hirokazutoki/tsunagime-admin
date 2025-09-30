@@ -23,7 +23,7 @@ class AdministratorResource extends Resource
 
     protected static string|null|\UnitEnum $navigationGroup = 'System';
 
-    protected static ?int $navigationSort = 0;
+    protected static ?int $navigationSort = 90;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
