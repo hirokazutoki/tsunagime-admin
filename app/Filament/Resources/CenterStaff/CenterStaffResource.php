@@ -20,9 +20,11 @@ class CenterStaffResource extends Resource
 {
     protected static ?string $model = CenterStaff::class;
 
-    protected static string|null|\UnitEnum $navigationGroup = 'Users';
+    protected static string|null|\UnitEnum $navigationGroup = 'Volunteer Center';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?string $navigationLabel = 'Staff';
+
+    protected static ?int $navigationSort = 8;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
