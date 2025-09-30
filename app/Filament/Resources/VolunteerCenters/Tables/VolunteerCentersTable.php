@@ -15,16 +15,14 @@ class VolunteerCentersTable
     {
         return $table
             ->columns([
+                TextColumn::make('center_type')
+                    ->label('Type'),
                 TextColumn::make('center_name')
                     ->searchable(),
                 TextColumn::make('opened_at')
                     ->dateTime()
                     ->sortable(),
                 TextColumn::make('address')
-                    ->searchable(),
-                TextColumn::make('longitude')
-                    ->searchable(),
-                TextColumn::make('latitude')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
