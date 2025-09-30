@@ -21,9 +21,9 @@ class AdministratorResource extends Resource
     protected static ?string $model = Administrator::class;
 
 
-    protected static string|null|\UnitEnum $navigationGroup = 'Users';
+    protected static string|null|\UnitEnum $navigationGroup = 'System';
 
-    protected static ?int $navigationSort = 3;
+    protected static ?int $navigationSort = 0;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;
 
