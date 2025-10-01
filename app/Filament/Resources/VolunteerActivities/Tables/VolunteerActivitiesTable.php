@@ -24,8 +24,16 @@ class VolunteerActivitiesTable
                 TextColumn::make('volunteerGroup.leader.family_name')
                     ->label('Volunteer Group Leader')
                     ->searchable(),
-                TextColumn::make('shuttleDrivers'), // TODO:
-                TextColumn::make('truckDrivers'), // TODO:
+                TextColumn::make('shuttleDrivers')
+                    ->getStateUsing(fn ($record) =>
+                        $record->shuttleDrivers->pluck('family_name')->implode(', ')
+                    )
+                    ->wrap(),
+                TextColumn::make('truckDrivers')
+                    ->getStateUsing(fn ($record) =>
+                        $record->truckDrivers->pluck('family_name')->implode(', ')
+                    )
+                    ->wrap(),
                 TextColumn::make('centerStaff.family_name')
                     ->label('Staff'),
                 TextColumn::make('created_at')

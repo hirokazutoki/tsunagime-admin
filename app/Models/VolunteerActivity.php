@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class VolunteerActivity extends Model
@@ -27,6 +29,32 @@ class VolunteerActivity extends Model
     public function volunteerGroup(): BelongsTo
     {
         return $this->BelongsTo(VolunteerGroup::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function shuttleDrivers(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Volunteer::class,
+            ShuttleDriver::class,
+            'volunteer_id',
+            'id',
+        );
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function truckDrivers(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Volunteer::class,
+            TruckDriver::class,
+            'volunteer_id',
+            'id',
+        );
     }
 
     /**
