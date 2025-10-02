@@ -11,10 +11,10 @@ class AdministratorInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
-                TextEntry::make('email')
+                TextEntry::make('user.name'),
+                TextEntry::make('user.email')
                     ->label('Email address'),
-                TextEntry::make('email_verified_at')
+                TextEntry::make('user.email_verified_at')
                     ->dateTime()
                     ->placeholder('-'),
                 TextEntry::make('created_at')
