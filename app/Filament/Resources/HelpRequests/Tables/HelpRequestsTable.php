@@ -24,7 +24,8 @@ class HelpRequestsTable
                         'completed' => 'success',
                     })
                     ->label('Process'),
-                TextColumn::make('client.name')
+                TextColumn::make('client.user.name')
+                    ->label('Client')
                     ->searchable(),
                 TextColumn::make('description')
                     ->searchable(),

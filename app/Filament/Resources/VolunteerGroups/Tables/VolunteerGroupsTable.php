@@ -20,16 +20,16 @@ class VolunteerGroupsTable
                     ->searchable(),
                 TextColumn::make('leader')
                     ->getStateUsing(fn ($record) =>
-                        $record->leader?->first()->family_name ?? 'Not set',
+                        $record->leader?->first()->user->name ?? 'Not set',
                     ),
                 TextColumn::make('sub')
                     ->getStateUsing(fn ($record) =>
-                        $record->subLeader?->first()->family_name ?? 'Not set',
+                        $record->subLeader?->first()->user->name ?? 'Not set',
                     ),
                 TextColumn::make('members')
                     ->label('Members')
                     ->getStateUsing(fn ($record) =>
-                        $record->otherMembers->pluck('family_name')->implode(', ')
+                        $record->otherMembers->pluck('user.name')->implode(', ')
                     )
                     ->wrap(),
                 TextColumn::make('created_at')

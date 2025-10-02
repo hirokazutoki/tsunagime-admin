@@ -15,17 +15,15 @@ class VolunteersTable
     {
         return $table
             ->columns([
-                TextColumn::make('full_name')
+                TextColumn::make('user.name')
                     ->label('Name')
                     ->searchable(['family_name', 'given_name']),
-                TextColumn::make('phone')
+                TextColumn::make('skill'),
+                TextColumn::make('user.phone')
                     ->searchable(),
-                TextColumn::make('email')
+                TextColumn::make('user.email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('email_verified_at')
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -19,22 +19,22 @@ class VolunteerActivitiesTable
             ->columns([
                 TextColumn::make('process_status')
                     ->badge(),
-                TextColumn::make('client.name')
+                TextColumn::make('client.user.name')
                     ->label('Client'),
-                TextColumn::make('volunteerGroup.leader.family_name')
+                TextColumn::make('volunteerGroup.leader.user.name')
                     ->label('Volunteer Group Leader')
                     ->searchable(),
                 TextColumn::make('shuttleDrivers')
                     ->getStateUsing(fn ($record) =>
-                        $record->shuttleDrivers->pluck('family_name')->implode(', ')
+                        $record->shuttleDrivers->pluck('user.name')->implode(', ')
                     )
                     ->wrap(),
                 TextColumn::make('truckDrivers')
                     ->getStateUsing(fn ($record) =>
-                        $record->truckDrivers->pluck('family_name')->implode(', ')
+                        $record->truckDrivers->pluck('user.name')->implode(', ')
                     )
                     ->wrap(),
-                TextColumn::make('centerStaff.family_name')
+                TextColumn::make('centerStaff.user.name')
                     ->label('Staff'),
                 TextColumn::make('created_at')
                     ->dateTime()
