@@ -2,13 +2,17 @@
 
 namespace App\Providers\Filament;
 
+use Filament\Actions\Action;
+use Filament\Actions\ActionGroup;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
+use Filament\Schemas\Components\Actions;
 use Filament\Support\Colors\Color;
+use Filament\Support\Icons\Heroicon;
 use Filament\Widgets\AccountWidget;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -39,6 +43,22 @@ class TsunagimeAdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+            ])
+            ->userMenuItems([
+                Action::make('switch_role')
+                    ->label('Switch Role')
+                    ->schema([
+                        Actions::make([
+                            Action::make('Client')
+                                ->icon(Heroicon::User)
+                                ->url('/'), // TODO:
+                            Action::make('Volunteer')
+                                ->icon(Heroicon::User)
+                                ->url('/'), // TODO:
+                        ])
+                            ->fullWidth(),
+                    ])
+                    ->icon(Heroicon::OutlinedArrowPath)->modalSubmitAction(false)->modalCancelAction(false),
             ])
             ->middleware([
                 EncryptCookies::class,
