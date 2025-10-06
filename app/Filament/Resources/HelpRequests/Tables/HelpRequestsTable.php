@@ -41,6 +41,7 @@ class HelpRequestsTable
             ->filters([
                 //
             ])
+            ->defaultSort('id', 'desc')
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),
