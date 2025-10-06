@@ -51,7 +51,8 @@ class TsunagimeAdminPanelProvider extends PanelProvider
                         Actions::make([
                             Action::make('Client')
                                 ->icon(Heroicon::User)
-                                ->url('/'), // TODO:
+                                ->url(config('tsunagime.client_app.url').'/signin', shouldOpenInNewTab: true)
+                                ->close(),
                             Action::make('Volunteer')
                                 ->icon(Heroicon::User)
                                 ->url('/'), // TODO:
